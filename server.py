@@ -56,7 +56,7 @@ class HcpServer:
         self.timer = None
 
     def start(self):
-        """Begin listening on the given port; sets up a QTimer to poll for data."""
+        """지정된 포트에서 리스닝을 시작합니다. 데이터를 폴링하기 위해 QTimer를 설정합니다."""
         if self.running:
             print(f"HcpServer is already running on {self.host}:{self.port}")
             return
@@ -84,7 +84,7 @@ class HcpServer:
             self.stop()
             
     def stop(self):
-        """Stop listening; close sockets and timers."""
+        """리스닝을 중지하고 소켓과 타이머를 정리합니다."""
         self.running = False
         self._cleanup_timer()
         self._cleanup_client()
@@ -118,12 +118,13 @@ class HcpServer:
 
     def _process_server(self):
         """
-        Timer callback to accept connections and process any incoming data.
-        This runs in the main Houdini thread to avoid concurrency issues.
+        연결을 수락하고 들어오는 데이터를 처리하는 타이머 콜백 함수입니다.
+        동시성 문제를 방지하기 위해 후디니 메인 스레드에서 실행됩니다.
         
-        Protocol: each message is a 4-byte big-endian length prefix
-        followed by that many bytes of UTF-8 JSON.
+        프로토콜: 각 메시지는 4바이트 빅엔디안 길이 접두사(length prefix)와
+        그 뒤를 따르는 UTF-8 JSON 데이터로 구성됩니다.
         """
+
         if not self.running:
             return
         

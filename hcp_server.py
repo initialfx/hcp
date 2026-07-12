@@ -2,10 +2,11 @@
 """
 hcp_server.py
 
-This is the "bridge" or "driver" script that Claude will run via `uv run`.
-It uses the MCP library (fastmcp) to communicate with Claude over stdio,
-and relays each command to the local Houdini plugin on port 9876.
+Claude가 `uv run`을 통해 실행하는 "브릿지(Bridge)" 또는 "드라이버(Driver)" 스크립트입니다.
+MCP 라이브러리(fastmcp)를 사용하여 표준 입출력(stdio)으로 AI와 통신하고,
+각 명령을 9876 포트의 로컬 후디니(Houdini) 플러그인으로 전달합니다.
 """
+
 import sys
 import os
 import time
